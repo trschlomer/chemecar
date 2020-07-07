@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import MySQLdb
 
 # Create your views here.
 
@@ -10,13 +11,37 @@ def nav1(request):
     return render(request, 'chemecardb/nav1.html')
 
 def roster(request):
-    return HttpResponse('roster page')
+    return render(request, 'chemecardb/roster.html')
 
-def schedule(request):
-    return HttpResponse('schedule page')
+def members(request):
+    return render(request, 'chemecardb/members.html')
+    
+def scheduling(request):
+    return render(request, 'chemecardb/scheduling.html')
 
-def materials(request):
-    return HttpResponse('materials page')
+def material(request):
+    #change user and passwd
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM material')
+    mats = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/material.html', {'mats':mats})
 
 def car(request):
-    return HttpResponse('car page')
+    return render(request, 'chemecardb/car.html')
+
+def powmech(request):
+    return render(request, 'chemecardb/powmech.html')
+
+def trial(request):
+    #change user and passwd
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM trial')
+    trls = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/trial.html', {'trls':trls})
+
+def stopmech(request):
+    return render(request, 'chemecardb/stopmech.html')

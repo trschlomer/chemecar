@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>trials</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if trls %}
+        <table>
+            <tr>
+                <th>power mechanism id</th>
+                <th>trial id</th>
+                <th>payload</th>
+                <th>distance</th>
+                <th>time</th>
+            </tr>
+            {% for item in trls %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+    </body>
+</html>
