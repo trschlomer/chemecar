@@ -20,7 +20,6 @@ def scheduling(request):
     return render(request, 'chemecardb/scheduling.html')
 
 def material(request):
-    #change user and passwd
     db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM material')
@@ -35,7 +34,6 @@ def powmech(request):
     return render(request, 'chemecardb/powmech.html')
 
 def trial(request):
-    #change user and passwd
     db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM trial')

@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cheme_car_db',
-        'USER': 'simran', #change this
-        'PASSWORD': 'Orange123', #change this 
+        'USER': 'simran', 
+        'PASSWORD': 'Orange123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
