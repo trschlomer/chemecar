@@ -3,9 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <title>members</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
     </head>
 
     <body>
-        members page
+        {% if mems %}
+        <table>
+            <tr>
+                <th>id</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>major</th>
+                <th>graduation year</th>
+            </tr>
+            {% for item in mems %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
     </body>
 </html>

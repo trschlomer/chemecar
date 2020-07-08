@@ -3,9 +3,37 @@
     <head>
         <meta charset="UTF-8">
         <title>power mechanism</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
     </head>
 
     <body>
+        {% if pows %}
+        <table>
+            <tr>
+                <th>year made</th>
+                <th>id</th>
+                <th>number of cells</th>
+                <th>voltage</th>
+                <th>current</th>
+            </tr>
+            {% for item in pows %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+
         trials page:
         <a href='/chemecardb/trial'><b>trials</b></a>
     </body>

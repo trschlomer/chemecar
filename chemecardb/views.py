@@ -11,13 +11,28 @@ def nav1(request):
     return render(request, 'chemecardb/nav1.html')
 
 def roster(request):
-    return render(request, 'chemecardb/roster.html')
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM roster')
+    rosters = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/roster.html', {'rosters':rosters})
 
 def members(request):
-    return render(request, 'chemecardb/members.html')
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM members')
+    mems = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/members.html', {'mems':mems})
     
 def scheduling(request):
-    return render(request, 'chemecardb/scheduling.html')
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM scheduling')
+    scheds = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/scheduling.html', {'scheds':scheds})
 
 def material(request):
     db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
@@ -31,7 +46,12 @@ def car(request):
     return render(request, 'chemecardb/car.html')
 
 def powmech(request):
-    return render(request, 'chemecardb/powmech.html')
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM pow_mech')
+    pows = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/powmech.html', {'pows':pows})
 
 def trial(request):
     db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
@@ -42,4 +62,9 @@ def trial(request):
     return render(request, 'chemecardb/trial.html', {'trls':trls})
 
 def stopmech(request):
-    return render(request, 'chemecardb/stopmech.html') 
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM stop_mech')
+    stops = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/stopmech.html', {'stops':stops})
