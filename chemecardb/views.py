@@ -7,7 +7,7 @@ from django.db import *
 # Create your views here.
 
 #def index(request):
-#    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+#    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
 #    cursor = db.cursor()
 #    cursor.execute('SELECT * FROM academic_year')
 #    years = cursor.fetchall()
@@ -27,7 +27,7 @@ from django.db import *
 
 
 def index(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM academic_year')
     years = cursor.fetchall()
@@ -38,7 +38,7 @@ def nav1(request):
     return render(request, 'chemecardb/nav1.html')
 
 def roster(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM roster')
     rosters = cursor.fetchall()
@@ -46,7 +46,7 @@ def roster(request):
     return render(request, 'chemecardb/roster.html', {'rosters':rosters})
 
 def members(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM members')
     mems = cursor.fetchall()
@@ -95,7 +95,7 @@ def updatemems(request):
         return render(request, 'chemecardb/members.html')
 
 def scheduling(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM scheduling')
     scheds = cursor.fetchall()
@@ -103,7 +103,7 @@ def scheduling(request):
     return render(request, 'chemecardb/scheduling.html', {'scheds':scheds})
 
 def material(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM material')
     mats = cursor.fetchall()
@@ -114,7 +114,7 @@ def car(request):
     return render(request, 'chemecardb/car.html')
 
 def powmech(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM pow_mech')
     pows = cursor.fetchall()
@@ -122,7 +122,7 @@ def powmech(request):
     return render(request, 'chemecardb/powmech.html', {'pows':pows})
 
 def trial(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM trial')
     trls = cursor.fetchall()
@@ -130,7 +130,7 @@ def trial(request):
     return render(request, 'chemecardb/trial.html', {'trls':trls})
 
 def stopmech(request):
-    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM stop_mech')
     stops = cursor.fetchall()
