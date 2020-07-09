@@ -15,11 +15,11 @@
         {% if rosters %}
         <table>
             <tr>
-                <th>year</th>
-                <th>computing id</th>
+                <th>year_id</th>
+                <th>comp_id</th>
                 <th>team</th>
                 <th>role</th>
-                <th>for credit</th>
+                <th>for_credit</th>
             </tr>
             {% for item in rosters %}
             <tr>
@@ -33,7 +33,44 @@
         {% else %}
             this is broke
         {% endif %}
+
+         <form method="POST" action="{% url 'insertroster' %}">
+            {% csrf_token %}
+            INSERT: year id
+            <input type="text" name="textfield1" size="10">
+            comp id
+            <input type="text" name="textfield2" size="10">
+            team ('Stop', 'Power', 'Chassis')
+            <input type="text" name="textfield3" size="10">
+            role
+            <input type="text" name="textfield4" size="10">
+            for credit
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">add roster</button>
+        </form>
         
+        <br>
+
+        <form method="POST" action="{% url 'deleteroster' %}">
+            {% csrf_token %}
+            DELETE: comp id
+            <input type="text" name="textfield6" size="10">
+             
+            <button type="submit">delete roster</button>
+        </form>
+
+        <br>
+
+        <form method="POST" action="{% url 'updateroster' %}">
+            {% csrf_token %}
+            UPDATE: comp id to be updated
+            <input type="text" name="textfield7" size="10">
+            comma-separated list of updates (sample: team='Power', role='Member', for_credit=0)
+            <input type="text" name="textfield8" size="30">
+
+            <button type="submit">edit roster</button>
+        </form>
         members page:
         <a href='/chemecardb/members'><b>members</b></a>
 
