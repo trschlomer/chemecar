@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>stop mechanism</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if query1 %}
+        <table>
+            <caption><i>List of stopping mechanisms in which the recorded stop times fall within 100 to 120 seconds:</i></caption>
+            <tr>
+                <th>stop mechanism id</th>
+                <th>time</th>
+            </tr>
+            {% for item in query1 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+        </table>
+
+        {% if query2 %}
+        <table>
+            <caption><i>List of stopping mechanisms and trials that had time differences less than 3 secs:</i></caption>
+            <tr>
+                <th>stop mechanism id</th>
+                <th>trial id (for power mechanism)</th>
+                <th>delta t</th>
+            </tr>
+            {% for item in query2 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+        </table>
+    </body>
+</html>

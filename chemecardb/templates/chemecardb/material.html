@@ -15,9 +15,9 @@
         {% if mats %}
         <table>
             <tr>
-                <th>id</th>
+                <th>mat_id</th>
                 <th>name</th>
-                <th>quantity</th>
+                <th>mat_qty</th>
                 <th>unit</th>
                 <th>description</th>
             </tr>
@@ -33,6 +33,44 @@
         {% else %}
             this is broke
         {% endif %}
+
+        <form method="POST" action="{% url 'insertmats' %}">
+            {% csrf_token %}
+            INSERT: material id
+            <input type="text" name="textfield1" size="10">
+            name
+            <input type="text" name="textfield2" size="10">
+            material quantity
+            <input type="text" name="textfield3" size="10">
+            units
+            <input type="text" name="textfield4" size="10">
+            description
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">add material</button>
+        </form>
+        
+        <br>
+
+        <form method="POST" action="{% url 'deletemats' %}">
+            {% csrf_token %}
+            DELETE: material id
+            <input type="text" name="textfield6" size="10">
+             
+            <button type="submit">delete material</button>
+        </form>
+
+        <br>
+
+        <form method="POST" action="{% url 'updatemats' %}">
+            {% csrf_token %}
+            UPDATE: material id to be updated
+            <input type="text" name="textfield7" size="10">
+            comma-separated list of updates (sample: name='sample', mat_qty=3.5)
+            <input type="text" name="textfield8" size="30">
+
+            <button type="submit">edit matarial</button>
+        </form>
         </table>
     </body>
 </html>

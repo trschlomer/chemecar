@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>roster queries</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if query1 %}
+        <table>
+            <caption><i>List of all the members in the club and their roles in 2018:</i></caption>
+            <tr>
+                <th>computing id</th>
+                <th>role</th>
+            </tr>
+            {% for item in query1 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+
+        {% if query2 %}
+        <table>
+            <caption><i>List of the students that have taken associated 1-credit class:</i></caption>
+            <tr>
+                <th>computing id</th>
+                <th>first name</th>
+                <th>last name</th>
+            </tr>
+            {% for item in query2 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+
+        {% if query3 %}
+        <table>
+            <caption><i>List of all the officers for each year:</i></caption>
+            <tr>
+                <th>computing id</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>role name</th>
+                <th>year</th>
+            </tr>
+            {% for item in query3 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+    </body>
+</html>
