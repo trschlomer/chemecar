@@ -21,3 +21,18 @@ def delete_mem(id):
 def update_mem(id, update):
     with connection.cursor() as cursor:
         cursor.execute("UPDATE MEMBERS SET {} WHERE COMP_ID = '{}'".format(update, id))
+        
+      
+def insert_sched(id, description, year):
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO SCHEDULING VALUES({},'{}',{})".format(id, description,
+        academic_year))
+
+def delete_sched(id):
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM SCHEDULING WHERE SCHED_ID = '{}'".format(id))
+
+def update_sched(id, update):
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE SCHEDULING SET {} WHERE SCHED_ID = '{}'".format(update, id))
+        
