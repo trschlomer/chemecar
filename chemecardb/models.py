@@ -58,3 +58,12 @@ def delete_trial(trial_id):
     with connection.cursor() as cursor:
         cursor.execute("DELETE FROM TRIAL WHERE TRIAL_ID = {}".format(id))
         
+def insert_stop_mech(stop_id, stop_time, year_id):
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO STOP_MECH VALUES({}, {}, {})".format(stop_id, stop_time,
+        year_id))
+
+def delete_stop_mech(stop_id):
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM STOP_MECH WHERE STOP_ID = {}".format(id))
+        
