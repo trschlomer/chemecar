@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^updatemems/', views.updatemems, name="updatemems"),
 
     url(r'^scheduling/$', views.scheduling, name="schedule"),
-    url(r'^insertsched/', views.insertched, name="insertsched"),
+    url(r'^insertsched/', views.insertsched, name="insertsched"),
     url(r'^deletesched/', views.deletesched, name="deletesched"),
     url(r'^updatesched/', views.updatesched, name="updatesched"),
     
