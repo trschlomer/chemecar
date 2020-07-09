@@ -30,11 +30,11 @@ def insert_roster(comp_id, year_id, team, role, for_credit):
 
 def delete_roster(comp_id):
     with connection.cursor() as cursor:
-        cursor.execute("DELETE FROM ROSTER WHERE COMP_ID = '{}'".format(id))
+        cursor.execute("DELETE FROM ROSTER WHERE COMP_ID = '{}'".format(comp_id))
 
 def update_roster(comp_id, update):
     with connection.cursor() as cursor:
-        cursor.execute("UPDATE ROSTER SET {} WHERE COMP_ID = '{}'".format(update, id))
+        cursor.execute("UPDATE ROSTER SET {} WHERE COMP_ID = '{}'".format(update, comp_id))
     
 def insert_sched(id, date, description, year):
     with connection.cursor() as cursor:
@@ -51,12 +51,12 @@ def update_sched(id, update):
         
 def insert_trial(trial_id, pow_id, payload, distance, trial_time):
     with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO TRIAL VALUES({}, {}, {}, {}, {})".format(id, description,
-        year))
+        cursor.execute("INSERT INTO TRIAL VALUES({}, {}, {}, {}, {})".format(trial_id, pow_id, payload,
+        distance, trial_time))
 
 def delete_trial(trial_id):
     with connection.cursor() as cursor:
-        cursor.execute("DELETE FROM TRIAL WHERE TRIAL_ID = {}".format(id))
+        cursor.execute("DELETE FROM TRIAL WHERE TRIAL_ID = {}".format(trial_id))
         
 def insert_stop_mech(stop_id, stop_time, year_id):
     with connection.cursor() as cursor:
@@ -65,5 +65,5 @@ def insert_stop_mech(stop_id, stop_time, year_id):
 
 def delete_stop_mech(stop_id):
     with connection.cursor() as cursor:
-        cursor.execute("DELETE FROM STOP_MECH WHERE STOP_ID = {}".format(id))
+        cursor.execute("DELETE FROM STOP_MECH WHERE STOP_ID = {}".format(stop_id))
         

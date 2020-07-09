@@ -5,27 +5,6 @@ from .models import *
 from django.db import *
 
 # Create your views here.
-
-#def index(request):
-#    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
-#    cursor = db.cursor()
-#    cursor.execute('SELECT * FROM academic_year')
-#    years = cursor.fetchall()
-#    db.close()
-#    return render(request, 'chemecardb/form.html', {'years':years})
-
-#def search(request):
-#    if request.method == 'POST':
-#        search_id = request.POST.get('textfield', None)
-#        try:
-#           table = select_all(search_id)
-#           return render(request,'chemecardb/index.html', {'years':table})
-#        except ProgrammingError:
-#            return HttpResponse("no such table, please hit the back button and try again")
-#    else:
-#        return render(request, 'chemecardb/form.html')
-
-
 def index(request):
     db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
@@ -47,15 +26,15 @@ def roster(request):
 
 def insertroster(request):
     if request.method == 'POST':
-        comp_id = request.POST.get('textfield0', None)
-        year_id = request.POST.get('textfield1', None)
-        team = request.POST.get('textfield2', None)
-        role = request.POST.get('textfield3', None)
-        for_credit = request.POST.get('textfield4', None)
+        comp_id = request.POST.get('textfield1', None)
+        year_id = request.POST.get('textfield2', None)
+        team = request.POST.get('textfield3', None)
+        role = request.POST.get('textfield4', None)
+        for_credit = request.POST.get('textfield5', None)
         try:
-           insert_sched(comp_id, year_id, team, role, for_credit) 
+           insert_roster(comp_id, year_id, team, role, for_credit) 
            table = select_all('roster')
-           return render(request,'chemecardb/roster.html', {'roster':table})
+           return render(request,'chemecardb/roster.html', {'rosters':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
@@ -63,11 +42,11 @@ def insertroster(request):
 
 def deleteroster(request):
     if request.method == 'POST':
-        comp_id = request.POST.get('textfield5', None)
+        comp_id = request.POST.get('textfield6', None)
         try:
            delete_roster(comp_id) 
            table = select_all('roster')
-           return render(request,'chemecardb/roster.html', {'roster':table})
+           return render(request,'chemecardb/roster.html', {'rosters':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
@@ -75,12 +54,12 @@ def deleteroster(request):
 
 def updateroster(request):
     if request.method == 'POST':
-        comp_id = request.POST.get('textfield6', None)
-        update_text = request.POST.get('textfield7', None)
+        comp_id = request.POST.get('textfield7', None)
+        update_text = request.POST.get('textfield8', None)
         try:
            update_roster(comp_id, update_text) 
            table = select_all('roster')
-           return render(request,'chemecardb/roster.html', {'roster':table})
+           return render(request,'chemecardb/roster.html', {'rosters':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
@@ -218,10 +197,10 @@ def inserttrial(request):
         distance = request.POST.get('textfield3', None)
         trial_time = request.POST.get('textfield4', None)
         try:
-           insert_trial(trial_id, pow_id, payload, distance, trial_time) 
+           insert_trial(pow_id, trial_id, payload, distance, trial_time) 
            table = select_all('trial')
-           return render(request,'chemecardb/trial.html', {'scheds':table})
-        except (IntegrityError, OperationalError, ProgrammingError):
+           return render(request,'chemecardb/trial.html', {'trls':table})
+        except (OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/scheduling.html')
@@ -232,7 +211,7 @@ def deletetrial(request):
         try:
            delete_trial(trial_id) 
            table = select_all('trial')
-           return render(request,'chemecardb/trial.html', {'trial':table})
+           return render(request,'chemecardb/trial.html', {'trls':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
@@ -246,28 +225,28 @@ def stopmech(request):
     db.close()
     return render(request, 'chemecardb/stopmech.html', {'stops':stops})
 
-def insertstop_mech(request):
+def insertstops(request):
     if request.method == 'POST':
         stop_id = request.POST.get('textfield0', None)
         stop_time = request.POST.get('textfield1', None)
         year_id = request.POST.get('textfield2', None)
         try:
-           insert_trial(stop_id, stop_time, year_id) 
+           insert_stop_mech(stop_id, stop_time, year_id) 
            table = select_all('stop_mech')
-           return render(request,'chemecardb/stop_mech.html', {'stops':table})
+           return render(request,'chemecardb/stopmech.html', {'stops':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
-        return render(request, 'chemecardb/stop_mech.html')
+        return render(request, 'chemecardb/stopmech.html')
 
-def deletestop_mech(request):
+def deletestops(request):
     if request.method == 'POST':
         stop_id = request.POST.get('textfield3', None)
         try:
-           delete_trial(stop_id) 
+           delete_stop_mech(stop_id) 
            table = select_all('stop_mech')
-           return render(request,'chemecardb/stop_mech.html', {'trial':table})
+           return render(request,'chemecardb/stopmech.html', {'stops':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
-        return render(request, 'chemecardb/stop_mech.html')
+        return render(request, 'chemecardb/stopmech.html')
