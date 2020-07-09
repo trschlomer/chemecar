@@ -29,5 +29,37 @@
         {% else %}
             this is broke
         {% endif %}
+            <form method="POST" action="{% url 'insertsched' %}">
+            {% csrf_token %}
+            INSERT: sched id
+            <input type="text" name="textfield1" size="10">
+            sched name
+            <input type="text" name="textfield2" size="10">
+            sched desctiption
+            <input type="text" name="textfield3" size="10">
+            <button type="submit">add schedule</button>
+        </form>
+        
+        <br>
+
+        <form method="POST" action="{% url 'deletesched' %}">
+            {% csrf_token %}
+            DELETE: sched id
+            <input type="text" name="textfield6" size="10">
+             
+            <button type="submit">delete student</button>
+        </form>
+
+        <br>
+
+        <form method="POST" action="{% url 'updatesched' %}">
+            {% csrf_token %}
+            UPDATE: sched id to be updated
+            <input type="text" name="textfield7" size="10">
+            comma-separated list of updates (sample: sched id='123', description='proposal deadline')
+            <input type="text" name="textfield8" size="30">
+
+            <button type="submit">edit student</button>
+        </form>
     </body>
 </html>
