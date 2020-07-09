@@ -33,8 +33,44 @@
         {% else %}
             this is broke
         {% endif %}
+         <form method="POST" action="{% url 'insertroster' %}">
+            {% csrf_token %}
+            INSERT: year id
+            <input type="text" name="textfield1" size="10">
+            comp id
+            <input type="text" name="textfield2" size="10">
+            team
+            <input type="text" name="textfield3" size="10">
+            role
+            <input type="text" name="textfield4" size="10">
+            for credit
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">add roster</button>
+        </form>
         
+        <br>
+
+        <form method="POST" action="{% url 'deleteroster' %}">
+            {% csrf_token %}
+            DELETE: comp id
+            <input type="text" name="textfield6" size="10">
+             
+            <button type="submit">delete roster</button>
+        </form>
+
+        <br>
+
+        <form method="POST" action="{% url 'updatemems' %}">
+            {% csrf_token %}
+            UPDATE: comp id to be updated
+            <input type="text" name="textfield7" size="10">
+            comma-separated list of updates (sample: comp_id='abc7de', team='power', role='member', for_credit=0)
+            <input type="text" name="textfield8" size="30">
+
+            <button type="submit">edit roster</button>
+        </form>
         members page:
-        <a href='/chemecardb/members'><b>members</b></a>
+        <a href='/chemecardb/roster'><b>members</b></a>
     </body>
 </html>
