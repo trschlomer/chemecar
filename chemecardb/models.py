@@ -25,8 +25,8 @@ def update_mem(id, update):
       
 def insert_sched(id, date, description, year):
     with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO SCHEDULING VALUES({},'{}', '{}', {})".format(id, description,
-        year))
+        cursor.execute("INSERT INTO SCHEDULING VALUES({},'{}', '{}', {})".format(id, date,
+        description, year))
 
 def delete_sched(id):
     with connection.cursor() as cursor:

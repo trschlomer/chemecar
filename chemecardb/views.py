@@ -147,13 +147,14 @@ def scheduling(request):
 def insertsched(request):
     if request.method == 'POST':
         sched_id = request.POST.get('textfield0', None)
-        description = request.POST.get('textfield1', None)
-        date = request.POST.get('textfield2', None)
+        date = request.POST.get('textfield1', None)
+        description = request.POST.get('textfield2', None)
+        year = request.POST.get('textfield3',None)
         try:
-           insert_sched(sched_id, description, date) 
-           table = select_all('schedule')
+           insert_sched(sched_id, date, description, year)
+           table = select_all('scheduling')
            return render(request,'chemecardb/scheduling.html', {'scheds':table})
-        except (IntegrityError, OperationalError, ProgrammingError):
+        except (ProgrammingError,IntegrityError, OperationalError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/scheduling.html')
@@ -176,9 +177,9 @@ def updatesched(request):
         update_text = request.POST.get('textfield8', None)
         try:
            update_sched(sched_id, update_text) 
-           table = select_all('members')
+           table = select_all('scheduling')
            return render(request,'chemecardb/scheduling.html', {'sched':table})
-        except (IntegrityError, OperationalError, ProgrammingError):
+        except (IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/scheduling.html')
