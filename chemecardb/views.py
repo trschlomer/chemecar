@@ -104,10 +104,11 @@ def scheduling(request):
 
 def insertsched(request):
     if request.method == 'POST':
+        sched_id = request.POST.get('textfield0', None)
         description = request.POST.get('textfield1', None)
         date = request.POST.get('textfield2', None)
         try:
-           insert_sched(description, date) 
+           insert_sched(,sched_id, description, date) 
            table = select_all('schedule')
            return render(request,'chemecardb/scheduling.html', {'scheds':table})
         except (IntegrityError, OperationalError, ProgrammingError):
