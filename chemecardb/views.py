@@ -245,3 +245,29 @@ def stopmech(request):
     stops = cursor.fetchall()
     db.close()
     return render(request, 'chemecardb/stopmech.html', {'stops':stops})
+
+def insertstop_mech(request):
+    if request.method == 'POST':
+        stop_id = request.POST.get('textfield0', None)
+        stop_time = request.POST.get('textfield1', None)
+        year_id = request.POST.get('textfield2', None)
+        try:
+           insert_trial(stop_id, stop_time, year_id) 
+           table = select_all('stop_mech')
+           return render(request,'chemecardb/stop_mech.html', {'stops':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/stop_mech.html')
+
+def deletestop_mech(request):
+    if request.method == 'POST':
+        stop_id = request.POST.get('textfield3', None)
+        try:
+           delete_trial(stop_id) 
+           table = select_all('stop_mech')
+           return render(request,'chemecardb/stop_mech.html', {'trial':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/stop_mech.html')
