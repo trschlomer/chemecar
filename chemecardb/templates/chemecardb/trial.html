@@ -33,5 +33,30 @@
         {% else %}
             this is broke
         {% endif %}
+            <form method="POST" action="{% url 'inserttrial' %}">
+            {% csrf_token %}
+            INSERT: trial id
+            <input type="text" name="textfield0" size="10">
+            pow id
+            <input type="text" name="textfield1" size="10">
+            payload
+            <input type="text" name="textfield2" size="10">
+            distance
+            <input type="text" name="textfield3" size="10">
+            trial time
+            <input type="text" name="textfield4" size="10">
+             
+            <button type="submit">add trial</button>
+        </form>
+        
+        <br>
+
+        <form method="POST" action="{% url 'deletetrial' %}">
+            {% csrf_token %}
+            DELETE: trial id
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">delete trial</button>
+        </form>
     </body>
 </html>
