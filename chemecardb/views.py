@@ -102,6 +102,44 @@ def scheduling(request):
     db.close()
     return render(request, 'chemecardb/scheduling.html', {'scheds':scheds})
 
+def insertsched(request):
+    if request.method == 'POST':
+        description = request.POST.get('textfield1', None)
+        date = request.POST.get('textfield2', None)
+        try:
+           insert_sched(description, date) 
+           table = select_all('schedule')
+           return render(request,'chemecardb/scheduling.html', {'scheds':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/scheduling.html')
+
+def deletesched(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield6', None)
+        try:
+           delete_sched(sched_id) 
+           table = select_all('scheduling')
+           return render(request,'chemecardb/scheduling.html', {'shceds':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/scheduling.html')
+
+def updatesched(request):
+    if request.method == 'POST':
+        sched_id = request.POST.get('textfield7', None)
+        update_text = request.POST.get('textfield8', None)
+        try:
+           update_sched(sched_id, update_text) 
+           table = select_all('members')
+           return render(request,'chemecardb/scheduling.html', {'sched':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/scheduling.html')
+
 def material(request):
     db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
