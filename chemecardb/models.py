@@ -23,6 +23,19 @@ def update_mem(id, update):
         cursor.execute("UPDATE MEMBERS SET {} WHERE COMP_ID = '{}'".format(update, id))
         
       
+def insert_roster(comp_id, year_id, team, role, for_credit):
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO ROSTER VALUES('{}',{},'{}','{}',{})".format(comp_id,year_id,
+        team, role, for_credit))
+
+def delete_roster(comp_id):
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM ROSTER WHERE COMP_ID = '{}'".format(id))
+
+def update_roster(comp_id, update):
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE ROSTER SET {} WHERE COMP_ID = '{}'".format(update, id))
+    
 def insert_sched(id, date, description, year):
     with connection.cursor() as cursor:
         cursor.execute("INSERT INTO SCHEDULING VALUES({},'{}', '{}', {})".format(id, description,
