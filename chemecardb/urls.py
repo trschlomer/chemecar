@@ -32,5 +32,7 @@ urlpatterns = [
     url(r'^deletetrial/', views.deletetrial, name="deletetrial"),
     
     url(r'^stopmech/$', views.stopmech, name="stop mechanism"),
+    url(r'^insertstops/', views.insertstops, name="insertstops"),
+    url(r'^deletestops/', views.deletestops, name="deletestops"),
     
 ]
