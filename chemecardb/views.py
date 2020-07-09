@@ -118,7 +118,7 @@ def insertsched(request):
 
 def deletesched(request):
     if request.method == 'POST':
-        comp_id = request.POST.get('textfield6', None)
+        sched_id = request.POST.get('textfield6', None)
         try:
            delete_sched(sched_id) 
            table = select_all('scheduling')
