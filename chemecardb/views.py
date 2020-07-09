@@ -45,6 +45,48 @@ def roster(request):
     db.close()
     return render(request, 'chemecardb/roster.html', {'rosters':rosters})
 
+def insertroster(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield0', None)
+        year_id = request.POST.get('textfield1', None)
+        team = request.POST.get('textfield2', None)
+        role = request.POST.get('textfield3', None)
+        for_credit = request.POST.get('textfield4', None)
+        try:
+           insert_sched(comp_id, year_id, team, role, for_credit) 
+           table = select_all('roster')
+           return render(request,'chemecardb/roster.html', {'roster':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/roster.html')
+
+def deleteroster(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield5', None)
+        try:
+           delete_roster(comp_id) 
+           table = select_all('roster')
+           return render(request,'chemecardb/roster.html', {'roster':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/roster.html')
+
+def updateroster(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield6', None)
+        update_text = request.POST.get('textfield7', None)
+        try:
+           update_roster(comp_id, update_text) 
+           table = select_all('roster')
+           return render(request,'chemecardb/roster.html', {'roster':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/roster.html')
+
+
 def members(request):
     db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
