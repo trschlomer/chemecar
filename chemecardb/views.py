@@ -108,7 +108,7 @@ def insertsched(request):
         description = request.POST.get('textfield1', None)
         date = request.POST.get('textfield2', None)
         try:
-           insert_sched(,sched_id, description, date) 
+           insert_sched(sched_id, description, date) 
            table = select_all('schedule')
            return render(request,'chemecardb/scheduling.html', {'scheds':table})
         except (IntegrityError, OperationalError, ProgrammingError):
@@ -122,7 +122,7 @@ def deletesched(request):
         try:
            delete_sched(sched_id) 
            table = select_all('scheduling')
-           return render(request,'chemecardb/scheduling.html', {'shceds':table})
+           return render(request,'chemecardb/scheduling.html', {'scheds':table})
         except (IntegrityError, OperationalError, ProgrammingError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
@@ -167,6 +167,34 @@ def trial(request):
     trls = cursor.fetchall()
     db.close()
     return render(request, 'chemecardb/trial.html', {'trls':trls})
+
+def inserttrial(request):
+    if request.method == 'POST':
+        trial_id = request.POST.get('textfield0', None)
+        pow_id = request.POST.get('textfield1', None)
+        payload = request.POST.get('textfield2', None)
+        distance = request.POST.get('textfield3', None)
+        trial_time = request.POST.get('textfield4', None)
+        try:
+           insert_trial(trial_id, pow_id, payload, distance, trial_time) 
+           table = select_all('trial')
+           return render(request,'chemecardb/trial.html', {'scheds':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/scheduling.html')
+
+def deletetrial(request):
+    if request.method == 'POST':
+        trial_id = request.POST.get('textfield5', None)
+        try:
+           delete_trial(trial_id) 
+           table = select_all('trial')
+           return render(request,'chemecardb/trial.html', {'trial':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/trial.html')
 
 def stopmech(request):
     db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
