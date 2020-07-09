@@ -6,7 +6,15 @@
     </head>
 
     <body>
+        {% if years %}
         chose a year:
-        <a href='/chemecardb/nav1'><b>2018</b></a>
+        <ul>
+            {% for item in years %}
+            <li><a href='/chemecardb/nav1'><b>{{item.0}}</b></a> ("{{item.1}}", Power: {{item.2}}, Stop: {{item.3}})</li>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+        </ul>
     </body>
 </html>

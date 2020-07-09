@@ -15,11 +15,11 @@
         {% if mems %}
         <table>
             <tr>
-                <th>id</th>
-                <th>first name</th>
-                <th>last name</th>
+                <th>comp_id</th>
+                <th>fname</th>
+                <th>lname</th>
                 <th>major</th>
-                <th>graduation year</th>
+                <th>grad_year</th>
             </tr>
             {% for item in mems %}
             <tr>
@@ -33,5 +33,43 @@
         {% else %}
             this is broke
         {% endif %}
+        
+        <form method="POST" action="{% url 'insertmems' %}">
+            {% csrf_token %}
+            INSERT: comp id
+            <input type="text" name="textfield1" size="10">
+            first name
+            <input type="text" name="textfield2" size="10">
+            last name
+            <input type="text" name="textfield3" size="10">
+            major
+            <input type="text" name="textfield4" size="10">
+            grad year
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">add student</button>
+        </form>
+        
+        <br>
+
+        <form method="POST" action="{% url 'deletemems' %}">
+            {% csrf_token %}
+            DELETE: comp id
+            <input type="text" name="textfield6" size="10">
+             
+            <button type="submit">delete student</button>
+        </form>
+
+        <br>
+
+        <form method="POST" action="{% url 'updatemems' %}">
+            {% csrf_token %}
+            UPDATE: comp id to be updated
+            <input type="text" name="textfield7" size="10">
+            updates (sample: fname='sam', major='comp sci', grad_year=2018)
+            <input type="text" name="textfield8" size="30">
+
+            <button type="submit">edit student</button>
+        </form>
     </body>
 </html>

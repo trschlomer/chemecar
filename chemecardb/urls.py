@@ -5,7 +5,12 @@ urlpatterns = [
     url(r'^$', views.index, name = "index"),
     url(r'^nav1/$', views.nav1, name="nav1"),
     url(r'^roster/$', views.roster, name="roster"),
+
     url(r'^members/$', views.members, name="members"),
+    url(r'^insertmems/', views.insertmems, name="insertmems"),
+    url(r'^deletemems/', views.deletemems, name="deletemems"),
+    url(r'^updatemems/', views.updatemems, name="updatemems"),
+
     url(r'^scheduling/$', views.scheduling, name="schedule"),
     url(r'^material/$', views.material, name="materials"),
     url(r'^car/$', views.car, name="car"),

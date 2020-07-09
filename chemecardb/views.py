@@ -1,11 +1,38 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import MySQLdb
+from .models import *
+from django.db import *
 
 # Create your views here.
 
+#def index(request):
+#    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+#    cursor = db.cursor()
+#    cursor.execute('SELECT * FROM academic_year')
+#    years = cursor.fetchall()
+#    db.close()
+#    return render(request, 'chemecardb/form.html', {'years':years})
+
+#def search(request):
+#    if request.method == 'POST':
+#        search_id = request.POST.get('textfield', None)
+#        try:
+#           table = select_all(search_id)
+#           return render(request,'chemecardb/index.html', {'years':table})
+#        except ProgrammingError:
+#            return HttpResponse("no such table, please hit the back button and try again")
+#    else:
+#        return render(request, 'chemecardb/form.html')
+
+
 def index(request):
-    return render(request, 'chemecardb/index.html')
+    db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM academic_year')
+    years = cursor.fetchall()
+    db.close()
+    return render(request, 'chemecardb/index.html', {'years':years})
 
 def nav1(request):
     return render(request, 'chemecardb/nav1.html')
@@ -26,6 +53,47 @@ def members(request):
     db.close()
     return render(request, 'chemecardb/members.html', {'mems':mems})
     
+def insertmems(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield1', None)
+        fname = request.POST.get('textfield2', None)
+        lname = request.POST.get('textfield3', None)
+        major = request.POST.get('textfield4', None)
+        grad_year = request.POST.get('textfield5', None)
+        try:
+           insert_mem(comp_id, fname, lname, major, grad_year) 
+           table = select_all('members')
+           return render(request,'chemecardb/members.html', {'mems':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/members.html')
+
+def deletemems(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield6', None)
+        try:
+           delete_mem(comp_id) 
+           table = select_all('members')
+           return render(request,'chemecardb/members.html', {'mems':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/members.html')
+
+def updatemems(request):
+    if request.method == 'POST':
+        comp_id = request.POST.get('textfield7', None)
+        update_text = request.POST.get('textfield8', None)
+        try:
+           update_mem(comp_id, update_text) 
+           table = select_all('members')
+           return render(request,'chemecardb/members.html', {'mems':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/members.html')
+
 def scheduling(request):
     db = MySQLdb.connect(user='simran', db='cheme_car_db', passwd='Orange123', host='localhost')
     cursor = db.cursor()
