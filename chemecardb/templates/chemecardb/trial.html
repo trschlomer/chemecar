@@ -2,14 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-<<<<<<< HEAD
-        <title>Title</title>
-    </head>
-
-    <body>
-        <a href='/chemecardb/trials'><b>trials</b></a>
-=======
-        <title>power mechanism</title>
+        <title>trials</title>
         <style>
             table, th, td {
               border: 1px solid black;
@@ -19,16 +12,16 @@
     </head>
 
     <body>
-        {% if pows %}
+        {% if trls %}
         <table>
             <tr>
-                <th>year made</th>
-                <th>id</th>
-                <th>number of cells</th>
-                <th>voltage</th>
-                <th>current</th>
+                <th>power mechanism id</th>
+                <th>trial id</th>
+                <th>payload</th>
+                <th>distance</th>
+                <th>time</th>
             </tr>
-            {% for item in pows %}
+            {% for item in trls %}
             <tr>
                 <td>{{item.0}}</td>
                 <td>{{item.1}}</td>
@@ -40,12 +33,5 @@
         {% else %}
             this is broke
         {% endif %}
-
-        trials page:
-        <a href='/chemecardb/trial'><b>trials</b></a>
-
-        power mechanism and trial queries:
-        <a href='/chemecardb/powmechq'><b>queries</b></a>
->>>>>>> simran's-work
     </body>
 </html>

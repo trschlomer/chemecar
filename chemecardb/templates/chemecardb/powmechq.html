@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>power mechanism</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if query1 %}
+        <table>
+            <caption><i>List of materials used by each power mechanism, including the power mechanism's power:</i></caption>
+            <tr>
+                <th>power mechanism id</th>
+                <th>material id</th>
+                <th>power quantity</th>
+                <th>name</th>
+                <th>year made</th>
+                <th>power</th>
+            </tr>
+            {% for item in query1 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+                <td>{{item.5}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+
+        {% if query2 %}
+        <table>
+            <caption><i>List of trials that went a distance of 10m:</i></caption>
+            <tr>
+                <th>trial id</th>
+                <th>power mechanism id</th>
+                <th>payload</th>
+                <th>distance</th>
+                <th>trial time</th>
+            </tr>
+            {% for item in query2 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+
+        {% if query3 %}
+        <table>
+            <caption><i>List of top five power mechanisms with highest threshold (Power = Voltage * Current):</i></caption>
+            <tr>
+                <th>power id</th>
+                <th>efficiency</th>
+            </tr>
+            {% for item in query3 %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+    </body>
+</html>

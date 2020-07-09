@@ -2,10 +2,50 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+<<<<<<< HEAD
         <title>Title</title>
     </head>
 
     <body>
         <a href='/chemecardb/members'><b>members</b></a>
+=======
+        <title>roster</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if rosters %}
+        <table>
+            <tr>
+                <th>year</th>
+                <th>computing id</th>
+                <th>team</th>
+                <th>role</th>
+                <th>for credit</th>
+            </tr>
+            {% for item in rosters %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+        
+        members page:
+        <a href='/chemecardb/members'><b>members</b></a>
+
+        roster and member queries:
+        <a href='/chemecardb/rosterq'><b>queries</b></a>
+>>>>>>> simran's-work
     </body>
 </html>

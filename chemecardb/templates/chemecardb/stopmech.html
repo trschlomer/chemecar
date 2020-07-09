@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>stop mechanism</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if stops %}
+        <table>
+            <tr>
+                <th>id</th>
+                <th>time</th>
+                <th>year made</th>
+            </tr>
+            {% for item in stops %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+        </table>
+
+        stop mechanism queries:
+        <a href='/chemecardb/stopmechq'><b>queries</b></a>
+    </body>
+</html>

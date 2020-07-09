@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>members</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% if mems %}
+        <table>
+            <tr>
+                <th>comp_id</th>
+                <th>fname</th>
+                <th>lname</th>
+                <th>major</th>
+                <th>grad_year</th>
+            </tr>
+            {% for item in mems %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+                <td>{{item.2}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            this is broke
+        {% endif %}
+        
+        <form method="POST" action="{% url 'insertmems' %}">
+            {% csrf_token %}
+            INSERT: comp id
+            <input type="text" name="textfield1" size="10">
+            first name
+            <input type="text" name="textfield2" size="10">
+            last name
+            <input type="text" name="textfield3" size="10">
+            major
+            <input type="text" name="textfield4" size="10">
+            grad year
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">add student</button>
+        </form>
+        
+        <br>
+
+        <form method="POST" action="{% url 'deletemems' %}">
+            {% csrf_token %}
+            DELETE: comp id
+            <input type="text" name="textfield6" size="10">
+             
+            <button type="submit">delete student</button>
+        </form>
+
+        <br>
+
+        <form method="POST" action="{% url 'updatemems' %}">
+            {% csrf_token %}
+            UPDATE: comp id to be updated
+            <input type="text" name="textfield7" size="10">
+            comma-separated list of updates (sample: fname='sam', major='comp sci', grad_year=2018)
+            <input type="text" name="textfield8" size="30">
+
+            <button type="submit">edit student</button>
+        </form>
+    </body>
+</html>
