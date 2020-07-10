@@ -199,7 +199,7 @@ def insertpow(request):
 
 def deletepow(request):
     if request.method == 'POST':
-        pow_id = request.POST.get('textfield6', None)
+        pow_id = request.POST.get('textfield5', None)
         try:
            delete_sched(pow_id) 
            table = select_all('pow_mech')
