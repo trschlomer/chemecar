@@ -23,7 +23,7 @@ def insertyear(request):
            insert_year(year_id, car_name, pow_name, stop_name)
            table = select_all('academic_year')
            return render(request,'chemecardb/index.html', {'years':table})
-        except ( OperationalError, ProgrammingError, IntegrityError):
+        except (OperationalError, ProgrammingError, IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/index.html')
@@ -186,7 +186,7 @@ def updatesched(request):
            update_sched(sched_id, update_text) 
            table = select_all('scheduling')
            return render(request,'chemecardb/scheduling.html', {'scheds':table})
-        except (IntegrityError):
+        except (OperationalError, ProgrammingError, IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/scheduling.html')
@@ -210,7 +210,7 @@ def insertmats(request):
            insert_mat(mat_id, name, mat_qty, unit, descript) 
            table = select_all('material')
            return render(request,'chemecardb/material.html', {'mats':table})
-        except (IntegrityError):
+        except (OperationalError, ProgrammingError, IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/material.html')
@@ -274,7 +274,7 @@ def insertpows(request):
            insert_pow_mech(year_id, pow_id, num_cells, voltage, current) 
            table = select_all('pow_mech')
            return render(request,'chemecardb/powmech.html', {'pows':table})
-        except (ProgrammingError):
+        except (OperationalError, ProgrammingError, IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/powmech.html')
@@ -311,7 +311,7 @@ def inserttrial(request):
            insert_trial(pow_id, trial_id, payload, distance, trial_time) 
            table = select_all('trial')
            return render(request,'chemecardb/trial.html', {'trls':table})
-        except (OperationalError, ProgrammingError):
+        except (OperationalError, ProgrammingError, IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/scheduling.html')
