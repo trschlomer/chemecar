@@ -5,27 +5,6 @@ from .models import *
 from django.db import *
 
 # Create your views here.
-
-#def index(request):
-#    db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
-#    cursor = db.cursor()
-#    cursor.execute('SELECT * FROM academic_year')
-#    years = cursor.fetchall()
-#    db.close()
-#    return render(request, 'chemecardb/form.html', {'years':years})
-
-#def search(request):
-#    if request.method == 'POST':
-#        search_id = request.POST.get('textfield', None)
-#        try:
-#           table = select_all(search_id)
-#           return render(request,'chemecardb/index.html', {'years':table})
-#        except ProgrammingError:
-#            return HttpResponse("no such table, please hit the back button and try again")
-#    else:
-#        return render(request, 'chemecardb/form.html')
-
-
 def index(request):
     db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
@@ -178,7 +157,7 @@ def updatesched(request):
         try:
            update_sched(sched_id, update_text) 
            table = select_all('scheduling')
-           return render(request,'chemecardb/scheduling.html', {'sched':table})
+           return render(request,'chemecardb/scheduling.html', {'scheds':table})
         except (IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
