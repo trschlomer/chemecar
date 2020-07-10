@@ -78,3 +78,11 @@ def delete_stop_mech(stop_id):
     with connection.cursor() as cursor:
         cursor.execute("DELETE FROM STOP_MECH WHERE STOP_ID = {}".format(stop_id))
         
+def insert_pow_mech(year_id, pow_id, num_cells, voltage, current):
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO POW_MECH VALUES({}, {}, {}, {}, {})".format(year_id, pow_id,
+        num_cells, voltage, current))
+
+def delete_pow_mech(pow_id):
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM POW_MECH WHERE POW_ID = {}".format(stop_id))

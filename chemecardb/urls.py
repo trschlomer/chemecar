@@ -30,7 +30,10 @@ urlpatterns = [
 
     url(r'^powmech/$', views.powmech, name="power mechanism"),
     url(r'^powmechq/$', views.powmechq, name="power mechanism q"),
-
+    url(r'^insertpows/', views.insertpows, name="insertpows"),
+    url(r'^deletepows/', views.deletepows, name="deletepows"),
+    
+    
     url(r'^trial/$', views.trial, name="trials"),
     url(r'^inserttrial/', views.inserttrial, name="inserttrial"),
     url(r'^deletetrial/', views.deletetrial, name="deletetrial"),
