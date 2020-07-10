@@ -39,16 +39,16 @@ def rosterq(request):
 
 def insertroster(request):
     if request.method == 'POST':
-        comp_id = request.POST.get('textfield1', None)
-        year_id = request.POST.get('textfield2', None)
+        year_id = request.POST.get('textfield1', None)
+        comp_id = request.POST.get('textfield2', None)
         team = request.POST.get('textfield3', None)
         role = request.POST.get('textfield4', None)
         for_credit = request.POST.get('textfield5', None)
         try:
-           insert_roster(comp_id, year_id, team, role, for_credit) 
+           insert_roster(year_id, comp_id, team, role, for_credit)
            table = select_all('roster')
            return render(request,'chemecardb/roster.html', {'rosters':table})
-        except (IntegrityError, OperationalError, ProgrammingError):
+        except ( OperationalError, ProgrammingError, IntegrityError):
             return HttpResponse("something went wrong! please hit the back button and try again...")
     else:
         return render(request, 'chemecardb/roster.html')

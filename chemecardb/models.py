@@ -34,9 +34,9 @@ def update_mat(id, update):
     with connection.cursor() as cursor:
         cursor.execute("UPDATE MATERIAL SET {} WHERE MAT_ID = {}".format(update, id))
         
-def insert_roster(comp_id, year_id, team, role, for_credit):
+def insert_roster(year_id, comp_id, team, role, for_credit):
     with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO ROSTER VALUES('{}',{},'{}','{}',{})".format(comp_id,year_id,
+        cursor.execute("INSERT INTO ROSTER VALUES({},'{}','{}','{}',{})".format(year_id,comp_id,
         team, role, for_credit))
 
 def delete_roster(comp_id):
