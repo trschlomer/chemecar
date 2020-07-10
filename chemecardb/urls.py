@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name = "index"),
+    url(r'^insertyear/', views.insertyear, name = "insertyear"),
+
     url(r'^nav1/$', views.nav1, name="nav1"),
    
     url(r'^roster/$', views.roster, name="roster"),

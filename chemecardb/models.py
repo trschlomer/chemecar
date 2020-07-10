@@ -9,6 +9,11 @@ def select_all(TABLE):
         row = cursor.fetchall()
     return row
 
+def insert_year(id, car_name, pow_name, stop_name):
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO ACADEMIC_YEAR VALUES({},'{}','{}','{}')".format(id,car_name,
+        pow_name, stop_name))
+
 def insert_mem(id, fname, lname, major, grad_year):
     with connection.cursor() as cursor:
         cursor.execute("INSERT INTO MEMBERS VALUES('{}','{}','{}','{}',{})".format(id,fname,

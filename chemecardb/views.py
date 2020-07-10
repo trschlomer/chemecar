@@ -13,6 +13,21 @@ def index(request):
     db.close()
     return render(request, 'chemecardb/index.html', {'years':years})
 
+def insertyear(request):
+    if request.method == 'POST':
+        year_id = request.POST.get('textfield1', None)
+        car_name = request.POST.get('textfield2', None)
+        pow_name = request.POST.get('textfield3', None)
+        stop_name = request.POST.get('textfield4', None)
+        try:
+           insert_year(year_id, car_name, pow_name, stop_name)
+           table = select_all('academic_year')
+           return render(request,'chemecardb/index.html', {'years':table})
+        except ( OperationalError, ProgrammingError, IntegrityError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/index.html')
+
 def nav1(request):
     return render(request, 'chemecardb/nav1.html')
 

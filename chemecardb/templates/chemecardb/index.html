@@ -7,7 +7,7 @@
 
     <body>
         {% if years %}
-        chose a year:
+        choose a year:
         <ul>
             {% for item in years %}
             <li><a href='/chemecardb/nav1'><b>{{item.0}}</b></a> ("{{item.1}}", Power: {{item.2}}, Stop: {{item.3}})</li>
@@ -16,5 +16,19 @@
             this is broke
         {% endif %}
         </ul>
+
+        <form method="POST" action="{% url 'insertyear' %}">
+            {% csrf_token %}
+            INSERT: year id
+            <input type="text" name="textfield1" size="10">
+            car name
+            <input type="text" name="textfield2" size="10">
+            pow name
+            <input type="text" name="textfield3" size="10">
+            stop name
+            <input type="text" name="textfield4" size="10">
+
+            <button type="submit">add year</button>
+        </form>
     </body>
 </html>
