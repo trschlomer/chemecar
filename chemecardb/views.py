@@ -181,6 +181,35 @@ def powmech(request):
     db.close()
     return render(request, 'chemecardb/powmech.html', {'pows':pows})
 
+def insertpow(request):
+    if request.method == 'POST':
+        year_id = request.POST.get('textfield0', None)
+        pow_id = request.POST.get('textfield1', None)
+        num_cells = request.POST.get('textfield2', None)
+        voltage = request.POST.get('textfield3' , None)
+        current = request.POST.get('textfield4' , None)
+        try:
+           insert_sched(sched_id, description, date) 
+           table = select_all('power_mech')
+           return render(request,'chemecardb/power_mech.html', {'pows':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/pow_mech.html')
+
+def deletepow(request):
+    if request.method == 'POST':
+        pow_id = request.POST.get('textfield6', None)
+        try:
+           delete_sched(pow_id) 
+           table = select_all('pow_mech')
+           return render(request,'chemecardb/pow_mech.html', {'pows':table})
+        except (IntegrityError, OperationalError, ProgrammingError):
+            return HttpResponse("something went wrong! please hit the back button and try again...")
+    else:
+        return render(request, 'chemecardb/pow_mech.html')
+
+
 def trial(request):
     db = MySQLdb.connect(user='dbadmin', db='cheme_car_db', passwd='12345', host='localhost')
     cursor = db.cursor()
