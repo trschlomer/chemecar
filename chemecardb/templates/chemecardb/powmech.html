@@ -34,6 +34,30 @@
             this is broke
         {% endif %}
 
+            <form method="POST" action="{% url 'insertpows' %}">
+            {% csrf_token %}
+            INSERT: year id
+            <input type="text" name="textfield0" size="10">
+            pow id
+            <input type="text" name="textfield1" size="10">
+            num cells
+            <input type="text" name="textfield2" size="10">
+            voltage
+            <input type="text" name="textfield3" size="10">
+            current
+            <input type="text" name="textfield4" size="10">
+            <button type="submit">add stop_mech</button>
+        </form>
+        
+        <br>
+
+        <form method="POST" action="{% url 'deletepows' %}">
+            {% csrf_token %}
+            DELETE: pow id
+            <input type="text" name="textfield5" size="10">
+             
+            <button type="submit">delete pow_mech</button>
+        </form>
         trials page:
         <a href='/chemecardb/trial'><b>trials</b></a>
     </body>
