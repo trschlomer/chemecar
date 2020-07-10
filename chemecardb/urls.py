@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^car/$', views.car, name="car"),
     
     url(r'^powmech/$', views.powmech, name="power mechanism"),
+    url(r'^insertpows/', views.insertpows, name="insertpows"),
+    url(r'^deletepows/', views.deletepows, name="deletepows"),
     
     
     url(r'^trial/$', views.trial, name="trials"),
