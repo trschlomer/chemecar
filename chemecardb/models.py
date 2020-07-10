@@ -85,4 +85,4 @@ def insert_pow_mech(year_id, pow_id, num_cells, voltage, current):
 
 def delete_pow_mech(pow_id):
     with connection.cursor() as cursor:
-        cursor.execute("DELETE FROM POW_MECH WHERE POW_ID = {}".format(stop_id))
+        cursor.execute("DELETE FROM POW_MECH WHERE POW_ID = {}".format(pow_id))
